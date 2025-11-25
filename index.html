@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Carte.css">
+    <title>Carte de visite - Gaïus Chanis</title>
+    <style>
+      /* Réinitialisation de base*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corps de la page */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+}
+
+/* Conteneur principal */
+.carte-visite {
+    background-color: white;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    text-align: center;
+}
+
+/* Photo de profil */
+.photo-profil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #667eea;
+    margin: 0 auto 20px;
+    display: block;
+    object-fit: cover;
+}
+
+/* Titre, Noms */
+h1 {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Sous-titres, rôles */
+h2 {
+    font-size: 1.3em;
+    color: #764ba2;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+/* Biographie */
+.bio {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: center;
+    text-indent: 40px;
+    padding: 0 10px;
+
+}
+
+/* Section compétence */
+
+.competences {
+    margin-bottom: 30px;
+}
+
+.competences h3 {
+    font-size: 1.5em;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.competences ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.competences li{
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.competences li:hover{
+    background-color: #667eea;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Section liens sociaux */
+.liens-sociaux{
+    margin-bottom: 30px;
+}
+
+.liens-sociaux h3{
+    font-size: 1.5em;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.liens-sociaux a {
+    display: inline-block;
+    background-color: #667eea;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.liens-sociaux a:hover {
+    background-color: #764ba2;
+    transform: scale(1.05);
+}
+
+/* Section contact */
+.contact {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.contact h3 {
+    font-size: 1.5em;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.contact address {
+    font-style: normal;
+    line-height: 1.8;
+    color: #555;
+}
+
+.contact a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+/* Style pour le mode sombre */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.dark-mode .carte-visite {
+    background-color: #0f3460;
+    color: #e0e0e0;
+}
+
+body.dark-mode h1, body.dark-mode .competences h3, body.dark-mode .liens-sociaux h3, body.dark-mode .contact h3 {
+    color: #64b5f6;
+}
+
+body.dark-mode h2 {
+    color: #9575cd;
+}
+
+body.dark-mode .bio, body.dark-mode .contact address {
+    color: #b0b0b0;
+}
+
+body.dark-mode .competences li {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .competences li:hover {
+    background-color: #64b5f6
+}
+
+body.dark-mode .contact {
+    background-color: #1a1a2e;
+}
+
+body.dark-mode .contact a {
+    color: #64b5f6;
+}
+
+/*Bouton toggle mode */
+.toggle-mode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toggle-mode:hover {
+    transform: scale(1.1);
+    background-color: #764ba2;
+}
+
+/* Animation d'entrée */
+.carte-visite {
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Compteur de visites */
+.compteur {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8eaf6;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #667eea;
+}
+
+body.dark-mode .compteur {
+    background-color: #1a1a2e;
+    color: #64b5f6;
+}
+
+.statut {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+    </style>
+</head>
+<body>
+    <!--Bouton mode sombre-->
+
+    <button class="toggle-mode" onclick="toggleDarkMode()">🌙</button>
+    <main class="carte-visite">
+
+        <!-- Photo de profil-->
+
+        <img src="Gaiuschanis.png" alt="Photo de Gaïus Chanis" class="photo-profil" onclick="changePhoto()">
+
+        <!-- Badge de statut-->
+
+        <span class="statut">✅ Disponible pour des projets</span>
+        <h1>Gaïus Chanis HONTONWAKOU</h1>
+        <h2>Apprenti Developpeur web</h2>
+
+        <!--Bographie-->
+
+        <p class="bio">
+            Passionné par le développement web et les nouvelles technologies, je me forme actuellement aux langages de codages et de balisage. <b>Mon objectif est de créer des sites web et applications mobiles élégants, accessibles et performants.</b> Chaque ligne de code est une opportunité d'apprendre et de progresser !
+        </p>
+
+        <!--Compétences-->
+
+        <section class="competences">
+            <h3>💡 Compétences</h3>
+            <ul id="competences-liste">
+                <li onclick="animerCompetence(this)">HTML5</li>
+                <li onclick="animerCompetence(this)">CSS3</li>
+                <li onclick="animerCompetence(this)">Responsive Design</li>
+                <li onclick="animerCompetence(this)">Git & GitHub</li>
+            </ul>
+        </section>
+
+        <section class="Liens-sociaux">
+            <h3>♾️ Retrouvez-moi</h3>
+            <a href="https://www.linkedin.com/in/gaïus-chanis-08a782365?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="blank">LinkedIn</a>
+            <a href="https://www.facebook.com/profile.php?id=61577300496519">facebook</a>
+        </section>
+
+        <!-- Contact -->
+
+        <section class="contact">
+            <h3> Contact</h3>
+            <address>
+                Email : <a href="mailto:gaiuschanis03@gmail.com">gaiuschanis03@gmail.com</a>
+                Téléphone : <a href="tel:002290153505501">+229 01 53 50 55 01</a>
+                Localisation : <a href="Cotonou, Bénin">Cotonou, Bénin</a>
+            </address>
+
+        </section>
+
+        <!-- Compteur de visite-->
+
+        <div class="compteur">
+            <span id="compteur-visites">0</span> Visites sur cette page
+        </div>
+    </main>
+    <script>
+      function toggleDarkMode() {
+    const body = document.body;
+    const btn = document.querySelector('.toggle-mode');
+
+    body.classList.toggle('dark-mode');
+
+    if (body.classList.contains('dark-mode')) {
+        btn.textContent = '🌞';
+    } else {
+        btn.textContent = '🌙';
+    }
+}
+
+let photoIndex = 0;
+const photos = [
+    '3333.jpg',
+    '4444.jpg',
+    '2222.jpg'
+];
+
+function changePhoto() {
+    photoIndex = (photoIndex + 1) % photos.length;
+    const img = document.querySelector('.photo-profil');
+    img.computedStyleMap.transform = 'scale(0)';
+
+    setTimeout(() => {
+        img.src = photos[photoIndex];
+        img.computedStyleMap.transform = 'scale(1)';
+    }, 200);
+}
+
+// Animations sur les compétences 
+function animerCompetence(element) {
+    element.style.animation = 'none';
+    setTimeout(() => {
+        element.style.animation = 'pulse 0.5s ease';
+    }, 10);
+
+    setTimeout(() => {
+        element.style.animation = 'none';
+    }, 500);
+}
+
+// compteur de visites
+let visites = 1;
+
+function incrementerVisites() {
+    visites++;
+    document.getElementById('compteur-visites').textContent = visites;
+}
+
+// incrémenter chaque 10s
+setInterval(incrementerVisites, 10000);
+
+// initialiser le compteur
+window.addEventListener('load', () => {
+    document.getElementById('compteur-visites').textContent = visites;
+    //Message dans la console
+    console.log('👋 Bienvenue sur ma carte de visite !');
+    console.log('💡 Astuce: Cliquez sur ma photo pour la changer !');
+    console.log('🌙 Utilisez le bouton en haut à droite pour le mode sombre !')
+});
+
+// Animation douce lors du survol de la photo
+const photo = document.querySelector('.photo-profil');
+photo.style.transition = 'transform 0.3s ease';
+
+photo.addEventListener('mouseenter', () => {
+    photo.style.cursor = 'pointer';
+});
+    </script>
+</body>
+</html>
